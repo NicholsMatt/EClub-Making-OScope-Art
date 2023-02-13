@@ -4,7 +4,7 @@
 
 %% Take a math function and plot it, then rescale output to 0-255 for x and y
 
-t = 0:0.1:10;
+t = 0:0.1:6;
 x = 16*sin(t).^3
 y = 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)
 
@@ -38,7 +38,7 @@ disp(x2_array);
 disp(" ")
 
 y2 = round(y2);
-y2 = y2';
+% y2 = y2';
 disp("The y-value points are: ")
 y2_array = regexprep( mat2str(y2), {'\[', '\]', '\s+'}, {'', '', ','});
 disp(y2_array);
