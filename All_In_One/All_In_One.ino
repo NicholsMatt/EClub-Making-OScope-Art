@@ -6,14 +6,25 @@
  *      works well with scope set for 0.5V/div XY mode
  */
 #include "ShapeDefinitions.h"
+#include "ButtonRead.h"
 
 
-pinMode(A0, INPUT);
-pinMode(A1, INPUT);
-pinMode(A2, INPUT);
-pinMode(A3, INPUT);
+pinMode(A0, INPUT); //DIP Switch 0
+pinMode(A1, INPUT); //DIP Switch 1
+pinMode(A2, INPUT); //DIP Switch 2
+pinMode(A3, INPUT); //Spin/No-Spin Selector
 
-byte input[4] = {0, 0, 0, 0};
+  byte a0 = 0;
+  byte a1 = 0;
+  byte a2 = 0;
+  byte SpinNoSpin = 0;
+
+// some initial starting values...                                      
+byte x_min = 50;
+byte x_max = 50;
+byte x_mid = 50;
+byte x_half;
+
 
 #define FIGURE_DELAY	100  // trace delay in uS. Adjust as desired.
 #define NUM_POINTS	38   // number of XY points in figure
@@ -27,39 +38,33 @@ byte y_points[NUM_POINTS] = {100, 100, 80, 82, 74, 60, 40, 40, 50, 60, 60, 50, 5
 
 
 
-
-// some initial starting values...                                      
-byte x_min = 50;
-byte x_max = 50;
-byte x_mid = 50;
-byte x_half;
-
-
-
-
-
-
-
 void setup(){
   DDRD = B11111111; //initialize PORTs for writing
   DDRB = B00111111;
 }
 
 
+
+
 void loop(){
   
-  input = readInputs();
+  readInputs(a0, a1, a2, SpinNoSpin);
   writePattern(input);
+
+  //Read inputs
+  //
   
   delay(10);
 }
 
-byte readInputs(){
-  input = {digitalRead(A0), digitalRead(A1), digitalRead(A2), digitalRead(A3)};
-  return input;
+void readInputs(byte &a0, byte &a1, byte &a2, byte &SpinNoSpin){
+  a0 = digitalRead(A0);
+  a1 = digitalRead(A1);
+  a2 = digitalRead(A2);
+  SpinNoSpin = digitalRead(A3);
 }
 
-int writePattern(){
+void writePattern(){
   patternSetup(); //Run setup function
   
   byte t;
@@ -83,7 +88,7 @@ int writePattern(){
 
 }
 
-void patternSetup(){
+void patternSetup(int NUM_POINTS, ){
   byte t;
   for(t = 0; t < NUM_POINTS; t++)
   {
