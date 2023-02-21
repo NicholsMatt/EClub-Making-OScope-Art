@@ -1,13 +1,17 @@
 /*
- * A0, A1, & A2 are the inputs from the DIP switch for the different patterns 2^3 = 8 possible patterns
+ * A0, A1, A2, & A3 are the inputs from the DIP switch for the different patterns 2^4 = 16 possible patterns
  * 
  */
+
+
+
 
 //State 0 (0x0000) - Tektronix Logo
 int State0_FIGURE_DELAY = 100;
 int State0_NUM_POINTS = 38;
 byte State0_x_points[NUM_POINTS] = {10, 90, 90, 110, 130, 140, 140, 90, 90, 97, 113, 120, 90, 90, 100, 150, 150, 170, 170, 195, 220, 190, 220, 195, 170, 170, 100, 85, 77, 70, 72, 80, 90, 60, 60, 40, 40, 10};
 byte State0_y_points[NUM_POINTS] = {100, 100, 80, 82, 74, 60, 40, 40, 50, 60, 60, 50, 50, 40, 30, 30, 100, 100, 55, 80, 80, 45, 10, 10, 35, 10, 10, 13, 23, 40, 60, 72, 80, 80, 10, 10, 80, 80};
+byte State0_y_points_mapped[NUM_POINTS] = ;
 
 
 //State 1 (0x0001) - Electronics Club Logo

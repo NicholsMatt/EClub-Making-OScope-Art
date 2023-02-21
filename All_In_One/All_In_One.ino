@@ -6,13 +6,14 @@
  *      works well with scope set for 0.5V/div XY mode
  */
 #include "ShapeDefinitions.h"
-#include "ButtonRead.h"
+#include "Shape.h"
 
 
 pinMode(A0, INPUT); //DIP Switch 0
 pinMode(A1, INPUT); //DIP Switch 1
 pinMode(A2, INPUT); //DIP Switch 2
-pinMode(A3, INPUT); //Spin/No-Spin Selector
+pinMode(A3, INPUT); //DIP Switch 3
+pinMode(A4, INPUT); //Spin/NoSpin Toggle
 
   byte a0 = 0;
   byte a1 = 0;
